@@ -9,7 +9,7 @@ const Modal = (props) => {
     const backdrop = {
         visible: { opacity: 1 },
         hidden: { opacity: 0 },
-    }
+    };
 
     const modal = {
         hidden: { y: "-100vh", opacity: 0 },
@@ -18,7 +18,28 @@ const Modal = (props) => {
             opacity: 1,
             transition: { delay: 0.5 }
         },
-    }
+    };
+
+    const container = {
+        hidden: { opacity: 1, scale: 0 },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                delayChildren: 0.3,
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const item = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1
+        }
+    };
+
 
     return (
         <AnimatePresence>
@@ -34,18 +55,22 @@ const Modal = (props) => {
                         variants={modal}
                     >
                         <img className="team-image" src={team.image_url} alt="No Team Logo" />
-                        <h2>{team.name}</h2>
-                        <ul className="team-players-list">
+                        <h2 className="modal-team-title">{team.name}</h2>
+                        <motion.ul className="team-players-list"
+                            variants={container}
+                            initial="hidden"
+                            animate="visible"
+                        >
                             {
                                 team.players.map((player) => {
                                     if (player.role) {
-                                        return <li className="modal-player" key={player.id}>{player.name} - {player.role}</li>
+                                        return <motion.li className="modal-player" key={player.id} variants={item} whileHover={{ scale: 1.2 }} >{player.name} - {player.role}</motion.li>
                                     } else {
-                                        return <li className="modal-player" key={player.id}>{player.name}</li>
+                                        return <motion.li className="modal-player" key={player.id} variants={item} whileHover={{ scale: 1.2 }} >{player.name}</motion.li>
                                     }
                                 })
                             }
-                        </ul>
+                        </motion.ul>
                     </motion.div>
                 </motion.div>
             )}

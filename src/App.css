@@ -1,3 +1,4 @@
+/* Main App */
 .App {
 	text-align: center;
 }
@@ -35,6 +36,15 @@
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+/* Teams */
+
+@import url("https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap");
+
+.team-card-name {
+	font-family: "Odibee Sans", cursive;
+	font-size: 2rem;
 }
 
 .team-image {
@@ -76,4 +86,21 @@
 	text-align: center;
 }
 .modal-player {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+.team-players-list {
+	display: grid;
+	overflow: hidden;
+	margin: 0;
+	list-style: none;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	gap: 15px;
+	padding: 15px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 50px;
+}
+.modal-team-title {
+	font-family: "Odibee Sans", cursive;
 }
